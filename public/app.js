@@ -87,6 +87,22 @@ function updateSlider() {
         }, 1000); 
     });
 
+/// devamını oku 
+    const openBlogBtn = document.querySelectorAll('#openBlogBtn');
+    const modal3=document.querySelectorAll('#modal-blog');
+    const closeeBlogBtn = document.querySelectorAll('#closeeBlogBtn')
+    
+    for (let i = 0; i < openBlogBtn.length; i++) {
+        openBlogBtn[i].addEventListener('click', () => {
+            modal3[i].style.display = "flex";
+        });
+    
+        closeeBlogBtn[i].addEventListener('click', () => {
+            modal3[i].style.display = "none";
+        });
+    }
+
+
 //todo BURASI ABOUT MODAL KISMI
 const lastEditBtn = document.getElementById("last-edit");
 const modal = document.getElementById("modal");
@@ -121,7 +137,11 @@ modalBtn.addEventListener("click", () => {
 
 closeblogbtn.addEventListener("click", () => {
     modal2.style.display = "none";
+
 });
+
+
+
 
 
 

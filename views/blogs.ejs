@@ -1,0 +1,57 @@
+<%- include('parts/_header') %>
+    <%- include('parts/_menu') %>
+
+        <div class="container">
+
+            <div class="discovers">
+                <h3>Herkes Burada</h3>
+
+                <% for(blog of blogs) { %>
+                    <div class="discovers-item">
+
+                        <div class="pp">
+                            <div class="pp-image">
+                                <img src="https://images.pexels.com/photos/6996168/pexels-photo-6996168.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="profile">
+                                <h3>Samanta Doranes</h3>
+                                <button class="pp-btn"><a href="/blog">Profile Git</a></button>
+
+
+
+                                <!-- /blogs/<%=blog._id%> -->
+                            </div>
+                        </div>
+
+                        <div class="blog">
+
+                            <div class="d-block">
+                                <img src="https://im.haberturk.com/l/2012/07/23/ver1343026992/761062/jpg/640x360" alt="">
+                                <h4><%= blog.blogtitle %></h4>
+                                <p><%= blog.blogtext.substring(0,80) + "..."%></p>
+
+                                <div  id="modal-blog" class="blog-text modal3" style="display: none;">
+                                    <div class="modal-content3">
+                                        <h4><%= blog.blogtitle %></h4>
+                                        <p><%= blog.blogtext%></p>
+                                        <span id="closeeBlogBtn">
+                                            <img src="https://icon-library.com/images/close-icon-png/close-icon-png-9.jpg" alt="" style="width: 30px; height: 30px; background-color: white; color: white; padding:3px; border-radius: 50%;">
+                                        </span>
+                                    </div>
+
+
+                                </div>
+                                <button id="openBlogBtn">Devamını Oku</button>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+
+            </div>
+        </div>
+        <span id="myButton"><i class="fa-regular fa-circle-up"></i></span>
+
+        <%- include('parts/_footer') %>
+
+
+        <!-- 
+                                                <p><%= blog.blogtext.substring(0,300) + "......" %></p>
+         -->

@@ -1,0 +1,30 @@
+<%- include('parts/_header') %>
+    <%- include('parts/_menu') %>
+
+        <div class="container login-box">
+
+            <form>
+                <div class="user-box">
+                    <input type="text" name="username" required="">
+                    <label>Takma adınız</label>
+                </div>
+                <div class="user-box">
+                    <input type="email" name="email" required="">
+                    <label>email</label>
+                </div>
+                <div class="user-box">
+                    <input type="password" name="password" required="">
+                    <label>Parola</label>
+                </div>
+                <div id="send-btn">
+                    <a href="#">
+                        KAYIT OL
+                        <span></span>
+                    </a>
+                </div>
+
+            </form>
+        </div>
+        <span style="display: none;" id="myButton"><i class="fa-regular fa-circle-up"></i></span>
+
+        <%- include('parts/_footer') %>
