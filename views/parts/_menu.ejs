@@ -1,37 +1,50 @@
+<!-- LOADER -->
+<div class="overlay" id="overlay">
+    <img class="content" src="/images/loader.gif" alt="loader">
+</div>
+<!-- NAVBAR -->
+<nav>
+    <div class="container">
+        <div class="navbar">
+            <div class="nav-title">
+                <i class="fa-solid fa-burst" style="color:cornsilk"></i>
+                <h1>Blogla</h1>
+            </div>
+            <div class="nav-links">
+                <ul id="menu">
 
- 
-  
-    <!-- LOADER -->
-    <div class="overlay" id="overlay">
-        <img class="content" src="./images/loader.gif" alt="loader">
-    </div>
-    <!-- NAVBAR -->
-    <nav>
-        <div class="container">
-            <div class="navbar">
-                <div class="nav-title">
-                    <i class="fa-solid fa-burst" style="color:cornsilk"></i>
-                    <h1>Blogla</h1>
-                </div>
-                <div class="nav-links">
-                    <ul id="menu">
-                        <li><a class="<%= link === 'index' && 'active' %>" href="/">Anasayfa</a></li>
-                        <li><a class="<%= link === 'blogs' && 'active' %>" href="/blogs">Keşfet</a></li>
-                        <li><a class="<%= link === 'dashboard' && 'active' %>" href="/dashboard">Sana ait</a></li>
-                        <li><a href="./register.html">Kayıt Ol</a></li>
-                        <li><a href="./login.html">Giriş Yap</a></li>
-                        <li><a href="">Çıkış</a></li>
+                    <li><a class="<%= link === 'index' && 'active' %>" href="/">Anasayfa</a></li>
+                    <li><a class="<%= link === 'blogs' && 'active' %>" href="/blogs">Keşfet</a></li>
 
-                    </ul>
-                    <form action="">
-                        <input type="search" name="search" id="search" placeholder="ara">
-                        <label class="toggle" for="search"><i class="fa-solid fa-magnifying-glass"></i></label>
-                    </form>
-                    <div class="toggle-bar">
-                        <i id="togglebtn" class="fa-solid fa-bars toggle"></i>
-                    </div>
+                    <!-- BURADA KULLANICININ LOGİN İŞLEMİ YAPTIĞINA DAİR BİR SORGU YAPIYORUZ VE ONA GÖRE GÖZÜKECEK LİNKLERİ DÜZENLİYORUZ -->
+
+                    <% if(user) { %>
+
+
+                        <li><a class="<%= link === 'dashboard' && 'active' %>" href="/users/dashboard">Sana ait</a></li>
+
+                        <li id="logout-btn"><a href="/logout">Çıkış</a></li>
+
+
+                        <% }else { %>
+
+                            <li><a class="<%= link === 'register' && 'active' %>" href="/register">Kayıt Ol</a></li>
+                            <li><a class="<%= link === 'login' && 'active' %>" href="/login">Giriş Yap</a></li>
+
+                            <% } %>
+
+
+
+                </ul>
+                <form action="">
+                    <input type="search" name="search" id="search" placeholder="ara">
+                    <label class="toggle" for="search"><i class="fa-solid fa-magnifying-glass"></i></label>
+                </form>
+                <div class="toggle-bar">
+                    <i id="togglebtn" class="fa-solid fa-bars toggle"></i>
                 </div>
             </div>
         </div>
-    </nav>
-    <!-- NAVBAR END -->
+    </div>
+</nav>
+<!-- NAVBAR END -->

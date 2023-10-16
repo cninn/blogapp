@@ -1,61 +1,47 @@
 <%- include('parts/_header') %>
     <%- include('parts/_menu') %>
 
-        <!-- HEADER -->
-
-        <head>
-            <div class="container">
-                <div class="slider-container">
-                    <div class="slider-content">
-                        <div class="slide">
-
-                            <div class="slide-image">
-
-                                <img src="https://i.ytimg.com/vi/SXbEN5lWRt8/maxresdefault.jpg" alt="">
 
 
-                            </div>
-                            <div class="line"></div>
-                            <div class="slide-image">
-                                <img src="https://birhost.net/wp-content/uploads/2021/12/en-iyi-blog-siteleri-1.webp" alt="">
-                            </div>
-                        </div>
-
-                        <div class="slide">
-
-                            <div class="slide-image">
-
-                                <img src="https://www.abprojeyonetimi.com/wp-content/uploads/2017/06/Oli-Blog-2.jpg" alt="">
+        <div class="slide-container">
+            <div class="slides">
+                <img class="sld" src="https://images.unsplash.com/photo-1664575196644-808978af9b1f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" class="actv" alt="slide1">
 
 
-                            </div>
-                            <div class="line"></div>
-                            <div class="slide-image">
-                                <img src="https://blog.ozkula.com.tr/wp-content/uploads/2023/06/blog-olusturma-nedir.jpg" alt="">
-                            </div>
-                        </div>
-
-                        <div class="slide">
-
-                            <div class="slide-image">
-
-                                <img src="https://i.ytimg.com/vi/SXbEN5lWRt8/maxresdefault.jpg" alt="">
+                <img class="sld" src="https://images.unsplash.com/photo-1661956600684-97d3a4320e45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="slide1">
 
 
-                            </div>
-                            <div class="line"></div>
-                            <div class="slide-image">
-                                <img src="https://birhost.net/wp-content/uploads/2021/12/en-iyi-blog-siteleri-1.webp" alt="">
-                            </div>
-                        </div>
-                    </div>
-                    <button class="prevbtn" onclick="prevSlide()"><i class="fa-solid fa-arrow-left"></i></button>
-                    <button class="nextbtn" onclick="nextSlide()"><i class="fa-solid fa-arrow-right"></i></button>
-                </div>
+                <img class="sld" src="https://images.unsplash.com/photo-1522204538344-922f76ecc041?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="slide1">
+
+
+                <img class="sld" src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="slide1">
+
+
+                <img class="sld" src="https://images.unsplash.com/19/desktop.JPG?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="slide1">
+
+                
+                <img class="sld" src="https://images.unsplash.com/photo-1522204553393-1f71c9d4296d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2026&q=80" alt="slide1">
 
             </div>
+            <div class="btns">
+                <span class="nexta">&#10095;</span>
+                <span class="preva">&#10094;</span>
+            </div>
 
-        </head>
+            <div class="dotsContainer">
+                <div class="dot actv" onclick="switchImage(this)" attr="0"></div>
+                <div class="dot" attr="1" onclick="switchImage(this)"></div>
+                <div class="dot" attr="2" onclick="switchImage(this)"></div>
+                <div class="dot" attr="3" onclick="switchImage(this)"></div>
+                <div class="dot" attr="4" onclick="switchImage(this)"></div>
+                <div class="dot" attr="5" onclick="switchImage(this)"></div>
+            </div>
+
+
+        </div>
+
+
+
 
         <div class="container headertxt">
 
@@ -175,4 +161,85 @@
             </div>
         </div>
         <span id="myButton"><i class="fa-regular fa-circle-up"></i></span>
+
+        <script>
+
+            const slideImages = document.querySelectorAll('.sld');
+
+            let nexta = document.querySelector('.nexta');
+            let preva = document.querySelector('.preva');
+
+            let dots = document.querySelectorAll('.dot');
+
+            var counter = 0;
+
+            nexta.addEventListener('click', slideNext);
+
+            function slideNext() {
+                slideImages[counter].style.animation = 'next1 2s ease-in forwards';
+                if (counter >= slideImages.length - 1) {
+                    counter = 0;
+                } else {
+                    counter++;
+
+                }
+                slideImages[counter].style.animation = 'next2 2s ease-in forwards';
+                indicators()
+            }
+
+            preva.addEventListener('click', slidePrev);
+
+            function slidePrev() {
+                slideImages[counter].style.animation = 'prev1 2s ease-in forwards';
+                if (counter == 0) {
+                    counter = slideImages.length - 1;
+                } else {
+                    counter--;
+
+                }
+                slideImages[counter].style.animation = 'prev2 2s ease-in forwards';
+                indicators()
+            }
+
+            //auto play
+            function autoSliding() {
+                deleteInterval = setInterval(timer, 5000);
+                function timer() {
+                    slideNext();
+                    indicators();
+                }
+            }
+            autoSliding();
+
+  
+
+            function indicators() {
+                for (i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(' actv', '')
+                }
+                dots[counter].className += ' actv';
+            }
+
+            //add indicators click
+            let switchImage=(currentImage)=>{
+                currentImage.classList.add('actv');
+                var imageId = currentImage.getAttribute('attr');
+                if(imageId > counter){
+                    slideImages[counter].style.animation = 'next1 2s ease-in forwards';
+                    counter = imageId;
+                    slideImages[counter].style.animation = 'next2 2s ease-in forwards';
+                }
+                else if(imageId == counter){
+                    return;
+                }else{
+                    slideImages[counter].style.animation = 'prev1 2s ease-in forwards';
+                    counter = imageId;
+                    slideImages[counter].style.animation = 'prev2 2s ease-in forwards';
+                }
+                indicators();
+            }
+
+
+
+        </script>
         <%- include('parts/_footer') %>

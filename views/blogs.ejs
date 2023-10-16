@@ -11,8 +11,8 @@
 
                         <div class="pp">
                             <div class="pp-image">
-                                <img src="https://images.pexels.com/photos/6996168/pexels-photo-6996168.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="profile">
-                                <h3>Samanta Doranes</h3>
+                                <img src="<%= user.photo %>">
+                                <h3><%= user.username %></h3>
                                 <button class="pp-btn"><a href="/blog">Profile Git</a></button>
 
 
@@ -24,7 +24,7 @@
                         <div class="blog">
 
                             <div class="d-block">
-                                <img src="https://im.haberturk.com/l/2012/07/23/ver1343026992/761062/jpg/640x360" alt="">
+                                <img src="<%= blog.url %>" alt="">
                                 <h4><%= blog.blogtitle %></h4>
                                 <p><%= blog.blogtext.substring(0,80) + "..."%></p>
 

@@ -1,25 +1,41 @@
 <%- include('parts/_header') %>
     <%- include('parts/_menu') %>
 
-    <div class="container login-box">
- 
-        <form>
-          <div class="user-box">
-            <input type="text" name="username" required="">
-            <label>Takma adınız</label>
-          </div>
-          <div class="user-box">
-            <input type="password" name="password" required="">
-            <label>Parola</label>
-          </div>
-          <div id="send-btn">
-            <a href="#">
-               GİRİŞ YAP
-            <span></span>
-         </a>
-          </div>
+        <div class="container login-box">
 
-        </form>
-      </div>
-      <span style="display: none;" id="myButton"><i class="fa-regular fa-circle-up"></i></span>
-      <%- include('parts/_footer') %>
+            <form action="/users/login" method="POST">
+                <div class="user-box">
+                  <input type="text" name="username" required="">
+                  <label>Takma adınız</label>
+                </div>
+
+
+                <div class="user-box">
+                  <input type="password" name="password" required="">
+                  <label>Parola</label>
+                </div>
+                <div id="send-btn">
+                  <button  class="send_btn" id="register-button" type="submit">
+                   GİRİŞ YAP
+                    <span></span>
+                    </button>
+        
+                </div>
+              </form>
+        </div>
+        <span style="display: none;" id="myButton"><i class="fa-regular fa-circle-up"></i></span>
+
+        <script>
+                document.addEventListener("DOMContentLoaded", function () {
+        const registerButton = document.getElementById("register-button");
+        registerButton.addEventListener("click", function (event) {
+          event.preventDefault(); // Varsayılan form gönderme işlemini engelle
+
+          // Formun otomatik olarak gönderilmesini tetikle
+          const form = this.closest("form");
+          form.submit();
+        });
+      });
+        </script>
+
+        <%- include('parts/_footer') %>

@@ -1,30 +1,156 @@
 <%- include('parts/_header') %>
-    <%- include('parts/_menu') %>
+  <%- include('parts/_menu') %>
 
-        <div class="container login-box">
+    <div class="container login-box">
 
-            <form>
-                <div class="user-box">
-                    <input type="text" name="username" required="">
-                    <label>Takma adınız</label>
-                </div>
-                <div class="user-box">
-                    <input type="email" name="email" required="">
-                    <label>email</label>
-                </div>
-                <div class="user-box">
-                    <input type="password" name="password" required="">
-                    <label>Parola</label>
-                </div>
-                <div id="send-btn">
-                    <a href="#">
-                        KAYIT OL
-                        <span></span>
-                    </a>
-                </div>
+      <form id="request" class="main_form" action="/users/register" method="POST" enctype="multipart/form-data">
 
-            </form>
+
+        <div class="user-box">
+          <input type="text" name="username">
+          <label>Takma adınız</label>
         </div>
-        <span style="display: none;" id="myButton"><i class="fa-regular fa-circle-up"></i></span>
 
-        <%- include('parts/_footer') %>
+
+
+        <div class="user-box">
+          <input type="email" name="email">
+          <label>email</label>
+        </div>
+
+
+        <div class="user-box">
+          <input type="password" name="password">
+          <label>Parola</label>
+        </div>
+
+        <div class="errors">
+          <div class="error-messages" style="display: none;" id="username"></div>
+          <div class="error-messages" style="display: none;" id="email"></div>
+          <div class="error-messages" style="display: none;" id="password"></div>
+          <div class="error-message" style="display: none;" id="photo"></div>
+        </div>
+
+
+        <div style="cursor: pointer;" class="file-btn" id="fileSelectButton">
+          <i class="fa-solid fa-circle-plus"></i>
+          <span> Bir Profil resmi seçin</span>
+          <input type="file" id="fileInput" name="photo" style="display: none;" accept="image/*">
+
+        </div>
+
+
+        <div id="send-btn">
+          <button  class="send_btn" id="register-button" type="submit">
+            KAYIT OL
+            <span></span>
+            </button>
+
+        </div>
+      </form>
+    </div>
+    <span style="display: none;" id="myButton"><i class="fa-regular fa-circle-up"></i></span>
+
+    <script>
+      const form = document.getElementById('request');
+      const usernameError = document.getElementById('username');
+      const emailError = document.getElementById('email')
+      const passwordError = document.getElementById('password')
+      const photoError = document.getElementById('photo')
+
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        emailError.textContent = "";
+        passwordError.textContent = "";
+        usernameError.textContent = "";
+        photoError.textContent="";
+        emailError.style.display = "none";
+        passwordError.style.display = "none";
+        usernameError.style.display = "none";
+        photoError.style.display="none";
+
+        const email = form.email.value;
+        const password = form.password.value;
+        const username = form.username.value;
+        const photo = form.photo.value;
+        
+
+     
+     
+     
+
+        try {
+          const response = await fetch('/users/register', {
+            method: "POST",
+              body: JSON.stringify({ email, password, username, photo }),
+              headers: { "Content-Type": "application/json" }
+          });
+
+          const data = await response.json();
+
+          if (data) {
+
+            if (data.email) {
+              emailError.innerText = data.email;
+              emailError.style.display = "block";
+              setTimeout(()=>{
+                emailError.style.display = "none";
+              },3500)
+           
+              console.log(data.email)
+            }
+
+            if (data.password) {
+              passwordError.textContent = data.password;
+              passwordError.style.display = "block";
+              setTimeout(()=>{
+                passwordError.style.display = "none";
+              },3500)
+              console.log(data.password)
+            }
+
+            if (data.username) {
+              usernameError.textContent = data.username;
+              usernameError.style.display = "block";
+              setTimeout(()=>{
+                usernameError.style.display = "none";
+              },3500)
+              console.log(data.username)
+            }
+            if (data.photo) {
+              photoError.innerText = data.photo;
+              photoError.style.display = "block";
+              setTimeout(()=>{
+                photoError.style.display = "none";
+              },3500)
+           
+              console.log(data.photo)
+            }
+            
+          
+          }
+          if (data.user) {
+              location.assign("/login")
+            }
+
+
+        } catch (error) {
+          console.log("Hata oluştu:", error);
+        }
+     
+      });
+
+      const fileSelectButton = document.getElementById("fileSelectButton");
+      const fileInput = document.getElementById("fileInput");
+
+      fileSelectButton.addEventListener("click", function () {
+        fileInput.click();
+      });
+
+
+    </script>
+
+
+    <%- include('parts/_footer') %>

@@ -1,0 +1,47 @@
+<%- include('parts/_header') %>
+
+    <div class="overlay" id="overlay">
+        <img class="content" src="/images/loader.gif" alt="loader">
+    </div>
+    <nav>
+        <div class="container">
+            <div class="navbar">
+                <div class="nav-title">
+                    <i class="fa-solid fa-burst" style="color:cornsilk"></i>
+                    <h1>Blogla</h1>
+                </div>
+                <div class="nav-links">
+                    <ul id="menu">
+
+                        <li><a class="<%= link === 'index' && 'active' %>" href="/">Anasayfa</a></li>
+                        <li><a class="<%= link === 'blogs' && 'active' %>" href="/blogs">Keşfet</a></li>
+
+                        <!-- BURADA KULLANICININ LOGİN İŞLEMİ YAPTIĞINA DAİR BİR SORGU YAPIYORUZ VE ONA GÖRE GÖZÜKECEK LİNKLERİ DÜZENLİYORUZ -->
+
+
+                                <li><a class="<%= link === 'register' && 'active' %>" href="/register">Kayıt Ol</a></li>
+                                <li><a class="<%= link === 'login' && 'active' %>" href="/login">Giriş Yap</a></li>
+
+
+
+                    </ul>
+                    <form action="">
+                        <input type="search" name="search" id="search" placeholder="ara">
+                        <label class="toggle" for="search"><i class="fa-solid fa-magnifying-glass"></i></label>
+                    </form>
+                    <div class="toggle-bar">
+                        <i id="togglebtn" class="fa-solid fa-bars toggle"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="byes">
+        <img src="https://qotoqot.com/sad-animations/img/200/sitting_alone/sitting_alone.gif" alt="">
+        <h1>Tekrar gel olur mu ?</h1>
+    </div>
+    <span style="display: none;" id="myButton"><i class="fa-regular fa-circle-up"></i></span>
+
+
+    <%- include('parts/_footer') %>
