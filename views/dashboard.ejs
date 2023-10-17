@@ -1,18 +1,18 @@
 <%- include('parts/_header') %>
     <%- include('parts/_menu') %>
 
-
-
+    
+    
         <!-- PROFİLE SECTİON -->
 
         <div class="container profile">
             <div class="pp">
                 <!-- BURAYA USER PHOTO GELECEK -->
                 <div class="pp-image">
-                    <img id="imagePreview" src="<%= user.photo %>" alt="profile">
+                    <img  src="<%= blog.user && blog.url %>" alt="profile">
                     <!-- BURAYA USERNAME GELECEK -->
                     <h3>
-                        <%= user.username %>
+                        <%= blog.user && user.username %>
                     </h3>
                     <span id="create-blog"><i id="modalBlogBtn" class="fa-solid fa-circle-plus"></i> Blogla</span>
                 </div>
@@ -69,16 +69,16 @@
                 </form>
             </div>
         </div>
-
+      
         <div class="container blog-section">
             <h2>Blogladıklarım</h2>
-           
+            <% for(blog of blogs) { %>
             <div class="blogs">
               
                 <div class="discovers-item">
-                  
+                   
                     <div class="blog">
-                        <% for(blog of blogs) { %>
+                     
                         <div class="d-block"  style="width: 400px; height: 500px;">
                             <img src="<%= blog.url %>" alt="blog-image">
                             <h4>

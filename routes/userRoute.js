@@ -9,5 +9,9 @@ const router = express.Router();
 router.route("/register").post(userController.createAuser);
 router.route("/login").post(userController.loginUser);
 router.route("/dashboard").get(authMiddleware.authenticateToken,userController.getDashboardPage);
+router.route("/:id").get(authMiddleware.authenticateToken,userController.getBlogUser);
+
+
+
 
 export default router;

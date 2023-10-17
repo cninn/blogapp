@@ -3,9 +3,8 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import Blog from "../model/BlogModel.js";
 
-//!BURADA CLOUDİNARY İŞLEMİ YAPAMADIN ÇÜNKÜ İNPUTUN BOŞ DEĞER DÖNÜYORDU.BAŞKA BİR YÖNTEM DENEYECEĞİM. FAKAT YARIN ARTIK ÇOK YORULDUM
+//!BURADA CLOUDİNARY İŞLEMİ YAPAMADIN ÇÜNKÜ İNPUTUN BOŞ DEĞER DÖNÜYORDU.BAŞKA BİR YÖNTEM DENEYECEĞİM. FAKAT YARIN ARTIK ÇOK YORULDUM. registerdeki profil resmini kaldır ve dashboarda ek olarak bir fileselect button koy ve modelini ona göre güncelle.
 const createAuser = async (req, res, next) => {
-  
   try {
     const user = await User.create(req.body);
     // res.redirect('/login')
@@ -27,10 +26,6 @@ const createAuser = async (req, res, next) => {
     next();
   }
 };
-
-
-
-
 
 const loginUser = async (req, res) => {
   try {
@@ -78,15 +73,25 @@ const createToken = (userId) => {
   });
 };
 
-
-
 const getDashboardPage = async (req, res) => {
-  const blogs = await Blog.find({user:res.locals.user._id})
+  const blogs = await Blog.find({ user: res.locals.user._id });
   res.render("dashboard", {
     link: "dashboard",
-    blogs
-    
+    blogs,
   });
 };
 
-export { createAuser, loginUser, createToken, getDashboardPage };
+const getBlogUser = async (req, res) => {
+  
+  const user = await User.findById({ _id: req.params.id });
+  const blogs = await Blog.find({ user: req.params.id });
+  res.render("user", {
+    user,
+    blogs,
+    link: "user",
+  });
+};
+
+
+
+export { createAuser, loginUser, createToken, getDashboardPage, getBlogUser};

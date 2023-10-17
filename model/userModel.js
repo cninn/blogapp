@@ -32,14 +32,8 @@ const userSchema = new Schema(
       trim: true,
       minlength:[5,"OPs! Parolanız en az 5 karakterden oluşmalıdır"]
     },
-    
-    photo:{
-      type:String,
-      required:[
-        true,"fotoraf zorunludur."
-      ],
-      // default:"https://mir-s3-cdn-cf.behance.net/project_modules/hd/c50a4a55883023.5996f8afa3f5c.gif"
-    }
+
+
     
   },
   {

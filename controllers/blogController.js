@@ -1,5 +1,7 @@
 import Blog from "../model/BlogModel.js";
+import User from "../model/userModel.js";
 import { v2 as cloudinary } from "cloudinary"; //online tabanlı upload arşivi
+import fs from 'fs';
 
 const createBlog = async (req, res, next) => {
   const result = await cloudinary.uploader
@@ -19,6 +21,9 @@ const createBlog = async (req, res, next) => {
       user: res.locals.user._id,
       url:result.secure_url,
     });
+
+    fs.unlinkSync(req.files.image.tempFilePath)
+
     res.status(201).redirect("/users/dashboard");
   } catch (error) {
     res.status(500).json({
@@ -30,11 +35,13 @@ const createBlog = async (req, res, next) => {
 
 const getAllBlogs = async (req, res) => {
   try {
-    const blogs = await Blog.find({});
+  
+    const blogs = await Blog.find({}).populate('user');
+    
 
     res.status(200).render("blogs", {
       blogs,
-      link: "blogs",
+      link: "blogs"
     });
   } catch (error) {
     res.status(500).json({
@@ -44,4 +51,9 @@ const getAllBlogs = async (req, res) => {
   }
 };
 
-export { createBlog, getAllBlogs };
+
+
+
+
+
+export { createBlog, getAllBlogs};

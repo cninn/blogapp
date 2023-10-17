@@ -9,7 +9,6 @@ const router = express.Router();
 router.route("/").get(pageController.getIndexPage);
 router.route("/discover").get(pageController.getDiscoverPage);
 
-router.route("/blog").get(pageController.getBlogPage);
 router.route("/register").get(pageController.getRegisterPage);
 router.route("/login").get(pageController.getLoginPage);
 

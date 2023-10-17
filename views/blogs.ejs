@@ -1,37 +1,47 @@
 <%- include('parts/_header') %>
     <%- include('parts/_menu') %>
-
+    <% for(blog of blogs) { %>
         <div class="container">
 
             <div class="discovers">
                 <h3>Herkes Burada</h3>
 
-                <% for(blog of blogs) { %>
+              
+
+
                     <div class="discovers-item">
 
                         <div class="pp">
                             <div class="pp-image">
-                                <img src="<%= user.photo %>">
-                                <h3><%= user.username %></h3>
-                                <button class="pp-btn"><a href="/blog">Profile Git</a></button>
-
-
-
-                                <!-- /blogs/<%=blog._id%> -->
+                             
+                                    <img src="<%= blog.user && blog.url %>">
+                                
+                                <h3>
+                                    <%= blog.user && blog.user.username %>
+                                </h3>
+                                <button class="pp-btn"><a href="/users/<%= blog.user && blog.user._id %>">Profile Git</a></button>
                             </div>
                         </div>
 
                         <div class="blog">
-
+                         
                             <div class="d-block">
                                 <img src="<%= blog.url %>" alt="">
-                                <h4><%= blog.blogtitle %></h4>
-                                <p><%= blog.blogtext.substring(0,80) + "..."%></p>
+                                <h4>
+                                    <%= blog.blogtitle %>
+                                </h4>
+                                <p>
+                                    <%= blog.blogtext.substring(0,80) + "..." %>
+                                </p>
 
-                                <div  id="modal-blog" class="blog-text modal3" style="display: none;">
+                                <div id="modal-blog" class="blog-text modal3" style="display: none;">
                                     <div class="modal-content3">
-                                        <h4><%= blog.blogtitle %></h4>
-                                        <p><%= blog.blogtext%></p>
+                                        <h4>
+                                            <%= blog.blogtitle %>
+                                        </h4>
+                                        <p>
+                                            <%= blog.blogtext%>
+                                        </p>
                                         <span id="closeeBlogBtn">
                                             <img src="https://icon-library.com/images/close-icon-png/close-icon-png-9.jpg" alt="" style="width: 30px; height: 30px; background-color: white; color: white; padding:3px; border-radius: 50%;">
                                         </span>
@@ -41,17 +51,15 @@
                                 </div>
                                 <button id="openBlogBtn">Devamını Oku</button>
                             </div>
+                          
                         </div>
                     </div>
-                    <% } %>
+                 
 
             </div>
         </div>
+        <% } %>
+
         <span id="myButton"><i class="fa-regular fa-circle-up"></i></span>
 
         <%- include('parts/_footer') %>
-
-
-        <!-- 
-                                                <p><%= blog.blogtext.substring(0,300) + "......" %></p>
-         -->

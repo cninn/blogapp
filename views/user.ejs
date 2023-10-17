@@ -1,0 +1,106 @@
+<%- include('parts/_header') %>
+    <%- include('parts/_menu') %>
+
+
+        <!-- USERPAGE SECTİON -->
+
+        <% for(blog of blogs) { %>
+            <div class="container profile">
+
+                <!-- PROİL BİLGİSİ KISMI  -->
+                <div class="pp">
+                    <div class="pp-image">
+                        <img src="<%= blog.url %>">
+                        <h3>
+                            <%= user.username %>
+                        </h3>
+
+
+
+
+                   
+
+
+
+
+                    </div>
+                </div>
+                <!-- KULLANICI HAKKINDA -->
+                <div id="about" class="profile-about">
+                    <div class="about-desc">
+                        <h4>Gümüş yıldızlardan bulutsu gökler diyarına.</h4>
+                        <p>Kalemlerin ve başlanmış hikayelerin krallığına hoşgeldiniz</p>
+                    </div>
+
+                    <div class="proile-sub">
+                        <div class="profile-icons">
+                            <a href=""><i class="fa-brands fa-facebook"></i></a>
+                            <a href=""><i class="fa-brands fa-instagram"></i></a>
+                            <a href=""><i class="fa-brands fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- PROFILE SECTİON END -->
+
+
+            <!-- BLOGLAR SECTİON -->
+
+
+
+            <div class="container blog-section">
+                <h2>Blogladıklarım</h2>
+                <div class="blogs">
+
+
+                    <div class="discovers-item">
+
+
+
+                        <div class="blog">
+
+                            <div class="d-block">
+                                <img src="<%= blog.url %>" alt="">
+                                <h4>
+                                    <%= blog.blogtitle %>
+                                </h4>
+                                <p>
+                                    <%= blog.blogtext.substring(0,80) + "..." %>
+                                </p>
+
+                                <div id="modal-blog" class="blog-text modal3" style="display: none;">
+                                    <div class="modal-content3">
+                                        <h4>
+                                            <%= blog.blogtitle %>
+                                        </h4>
+                                        <p>
+                                            <%= blog.blogtext%>
+                                        </p>
+                                        <span id="closeeBlogBtn">
+                                            <img src="https://icon-library.com/images/close-icon-png/close-icon-png-9.jpg" alt="" style="width: 30px; height: 30px; background-color: white; color: white; padding:3px; border-radius: 50%;">
+                                        </span>
+                                    </div>
+
+
+                                </div>
+                                <button id="openBlogBtn">Devamını Oku</button>
+                            </div>
+
+                        </div>
+                        <% } %>
+                    </div>
+
+
+
+
+
+                </div>
+            </div>
+
+
+
+            <span id="myButton"><i class="fa-regular fa-circle-up"></i></span>
+
+            <%- include('parts/_footer') %>
+
+                <!--  -->

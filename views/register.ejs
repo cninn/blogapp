@@ -32,19 +32,11 @@
         </div>
 
 
-        <div style="cursor: pointer;" class="file-btn" id="fileSelectButton">
-          <i class="fa-solid fa-circle-plus"></i>
-          <span> Bir Profil resmi seçin</span>
-          <input type="file" id="fileInput" name="photo" style="display: none;" accept="image/*">
-
-        </div>
-
-
         <div id="send-btn">
-          <button  class="send_btn" id="register-button" type="submit">
+          <button class="send_btn" id="register-button" type="submit">
             KAYIT OL
             <span></span>
-            </button>
+          </button>
 
         </div>
       </form>
@@ -56,7 +48,7 @@
       const usernameError = document.getElementById('username');
       const emailError = document.getElementById('email')
       const passwordError = document.getElementById('password')
-      const photoError = document.getElementById('photo')
+    
 
 
       form.addEventListener('submit', async (e) => {
@@ -65,27 +57,27 @@
         emailError.textContent = "";
         passwordError.textContent = "";
         usernameError.textContent = "";
-        photoError.textContent="";
+     
         emailError.style.display = "none";
         passwordError.style.display = "none";
         usernameError.style.display = "none";
-        photoError.style.display="none";
+       
 
         const email = form.email.value;
         const password = form.password.value;
         const username = form.username.value;
-        const photo = form.photo.value;
-        
+       
 
-     
-     
-     
+
+
+
+
 
         try {
           const response = await fetch('/users/register', {
             method: "POST",
-              body: JSON.stringify({ email, password, username, photo }),
-              headers: { "Content-Type": "application/json" }
+            body: JSON.stringify({ email, password, username }),
+            headers: { "Content-Type": "application/json" }
           });
 
           const data = await response.json();
@@ -95,60 +87,43 @@
             if (data.email) {
               emailError.innerText = data.email;
               emailError.style.display = "block";
-              setTimeout(()=>{
+              setTimeout(() => {
                 emailError.style.display = "none";
-              },3500)
-           
+              }, 3500)
+
               console.log(data.email)
             }
 
             if (data.password) {
               passwordError.textContent = data.password;
               passwordError.style.display = "block";
-              setTimeout(()=>{
+              setTimeout(() => {
                 passwordError.style.display = "none";
-              },3500)
+              }, 3500)
               console.log(data.password)
             }
 
             if (data.username) {
               usernameError.textContent = data.username;
               usernameError.style.display = "block";
-              setTimeout(()=>{
+              setTimeout(() => {
                 usernameError.style.display = "none";
-              },3500)
+              }, 3500)
               console.log(data.username)
             }
-            if (data.photo) {
-              photoError.innerText = data.photo;
-              photoError.style.display = "block";
-              setTimeout(()=>{
-                photoError.style.display = "none";
-              },3500)
-           
-              console.log(data.photo)
-            }
-            
-          
+
+
           }
           if (data.user) {
-              location.assign("/login")
-            }
+            location.assign("/login")
+          }
 
 
         } catch (error) {
           console.log("Hata oluştu:", error);
         }
-     
+
       });
-
-      const fileSelectButton = document.getElementById("fileSelectButton");
-      const fileInput = document.getElementById("fileInput");
-
-      fileSelectButton.addEventListener("click", function () {
-        fileInput.click();
-      });
-
 
     </script>
 

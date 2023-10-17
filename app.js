@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv"; //env config dosyamızı sync etmek için
 import conn from "./db.js";
 import cookieParser from "cookie-parser"; //tokeni çerezlerde tutmak için
+import methodOverride from 'method-override';//follows function
 import pageRoute from "./routes/pageRoute.js";
 import blogRoute from "./routes/blogRoute.js";
 import userRoute from "./routes/userRoute.js";
@@ -31,15 +32,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true })); //bodyden gelecek verileri almak için gerekli express fonksiyonu
 app.use(cookieParser()); //cookieparser call
 app.use(fileUpload({ useTempFiles: true }));
+app.use(methodOverride("_method",{
+  methods:["POST","GET"],
+}))
 
 //GENERAL ROUTİNGS
 
 app.use("*", checkUser);
 app.use("/", pageRoute);
-
 app.use("/blogs", blogRoute);
-app.use("/blog", pageRoute);
+
 app.use("/users", userRoute);
+
 
 app.listen(PORT, () => {
   console.log(`Zaman Makinası Yola Çıkıyor! http://localhost:${PORT}`);
