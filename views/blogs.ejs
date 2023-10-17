@@ -1,21 +1,22 @@
 <%- include('parts/_header') %>
     <%- include('parts/_menu') %>
-    <% for(blog of blogs) { %>
-        <div class="container">
-
-            <div class="discovers">
-                <h3>Herkes Burada</h3>
-
+    <h3 style="margin: 2rem; font-size: 1.5em;">Herkes Burada</h3>
+        <% for(blog of blogs) { %>
+            <div class="container">
               
+                <div class="discovers">
+
+
+
 
 
                     <div class="discovers-item">
 
                         <div class="pp">
                             <div class="pp-image">
-                             
-                                    <img src="<%= blog.user && blog.url %>">
-                                
+
+                                <img src="<%= blog.user && blog.url %>">
+
                                 <h3>
                                     <%= blog.user && blog.user.username %>
                                 </h3>
@@ -24,7 +25,7 @@
                         </div>
 
                         <div class="blog">
-                         
+
                             <div class="d-block">
                                 <img src="<%= blog.url %>" alt="">
                                 <h4>
@@ -51,15 +52,15 @@
                                 </div>
                                 <button id="openBlogBtn">Devamını Oku</button>
                             </div>
-                          
+
                         </div>
                     </div>
-                 
 
+
+                </div>
             </div>
-        </div>
-        <% } %>
+            <% } %>
 
-        <span id="myButton"><i class="fa-regular fa-circle-up"></i></span>
+                <span id="myButton"><i class="fa-regular fa-circle-up"></i></span>
 
-        <%- include('parts/_footer') %>
+                <%- include('parts/_footer') %>

@@ -1,8 +1,10 @@
 import Blog from "../model/BlogModel.js";
 import User from "../model/userModel.js";
-const getIndexPage = (req, res) => {
+const getIndexPage = async (req, res) => {
+  const users = await User.find({})
   res.render("index", {
     link: "index",
+    users
   });
 };
 const getDiscoverPage = (req, res) => {
@@ -30,10 +32,12 @@ const getLogOut = (req, res) => {
   // Kullanıcıyı login sayfasına yönlendirme
 };
 
+
 export {
   getIndexPage,
   getDiscoverPage,
   getRegisterPage,
   getLoginPage,
   getLogOut,
+ 
 };

@@ -47,6 +47,7 @@
   ::-webkit-scrollbar-button {
    display: none;
   }
+  /* SAYFAYI YUKARI KAYDIRAN BUTON */
 #myButton{
     position:absolute;
     font-size: 3em;
@@ -878,6 +879,12 @@ width: 100%;
 .pp h3{
     color: var(--dark-white);
 }
+
+.discovers{
+    display: flex;
+}
+
+
 .discovers-item{
     display: flex;
     justify-content: space-around;
@@ -889,8 +896,8 @@ width: 100%;
     
 }
 .discovers-item .pp img{
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
 }
 .discovers-item .blog{
     padding: 2rem;
@@ -1150,7 +1157,9 @@ width: 100%;
         }
     }
     .active{
-        background-color: rgb(0, 42, 255)!important;
+        background-color:var(--dark-white)!important;
+        color:var(--dark-red)!important;
+        font-weight: bold;
     }
   
   
@@ -1172,10 +1181,10 @@ width: 100%;
         color: var(--dark-white);
     }
     .discovers h3{
-        margin: 2rem;
+        margin-bottom: 0.7rem;
         border-bottom: 3px solid var(--dark-red);
         border-radius: 10px;
-        padding: 10px;
+        padding: 0.3rem 1rem;
     }
 
     .form-btn{
@@ -1240,30 +1249,10 @@ width: 100%;
     .pp-image{
         display: flex;
         flex-direction: column;
-        gap: 1rem;
-        position: relative;
-    }
-    .pp .file-btn{
-        width: 40px;
-        height: 40px;
-        position: absolute;
-        bottom:140px;
-        left: 40px;
-        font-size: 3em;
-        color:rgb(0, 89, 255);
-        background-color: black;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 50%;
-        font-size: 3em;
-    
+        
        
-        cursor: pointer;
     }
-    .pp .file-btn:hover{
-        color: aqua;
-    }
+
     #about.profile-about{
         background-color: var(--gray-normal);
         display: flex;
@@ -1638,4 +1627,17 @@ span.nexta:hover, span.preva:hover{
     flex-wrap: wrap;
     justify-content: center;
     text-align: center;
+}
+
+.blog{
+    justify-content: center;
+    align-items: center;
+}
+.toggle-bar i {
+   position: absolute;
+   top: 2rem;
+   right: 2rem;
+}
+.nav-links ul li a {
+    width: 6rem;
 }

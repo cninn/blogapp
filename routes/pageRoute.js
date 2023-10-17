@@ -7,6 +7,7 @@ import * as authMiddleware from "../middlewares/authMiddleware.js";
 const router = express.Router();
 
 router.route("/").get(pageController.getIndexPage);
+
 router.route("/discover").get(pageController.getDiscoverPage);
 
 router.route("/register").get(pageController.getRegisterPage);

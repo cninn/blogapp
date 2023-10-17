@@ -32,7 +32,10 @@ const userSchema = new Schema(
       trim: true,
       minlength:[5,"OPs! Parolanız en az 5 karakterden oluşmalıdır"]
     },
-
+    photo:{
+      type:String,
+      default:"https://www.vippng.com/png/full/355-3554387_create-digital-profile-icon-blue-profile-icon-png.png"
+    }
 
     
   },
@@ -51,10 +54,10 @@ userSchema.pre("save", function (next) {
 
     user.password = hash;
     
-    // // Profil resmi yoksa veya boşsa, varsayılan resmi ata
-    // if (!user.photo) {
-    //   user.photo = 'https://mir-s3-cdn-cf.behance.net/project_modules/hd/c50a4a55883023.5996f8afa3f5c.gif';
-    // }
+    // Profil resmi yoksa veya boşsa, varsayılan resmi ata
+    if (!user.photo) {
+      user.photo = 'https://www.vippng.com/png/full/355-3554387_create-digital-profile-icon-blue-profile-icon-png.png';
+    }
 
     next();
   });
