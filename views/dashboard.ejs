@@ -9,10 +9,10 @@
             <div class="pp">
                 <!-- BURAYA USER PHOTO GELECEK -->
                 <div class="pp-image">
-                    <img  src="<%= blog.user && blog.url %>" alt="profile">
+                    <img  src="<%= user.photo %>" alt="profile">
                     <!-- BURAYA USERNAME GELECEK -->
                     <h3>
-                        <%= blog.user && user.username %>
+                        <%= user.username %>
                     </h3>
                     <span id="create-blog"><i id="modalBlogBtn" class="fa-solid fa-circle-plus"></i> Blogla</span>
                 </div>
@@ -20,8 +20,8 @@
             <div id="about" class="profile-about">
                 <div class="about-desc">
                     <!-- BURAYA KULLANICI ABOUT MODALDAN GELEN BİLGİLER GELECEK -->
-                    <h4>Gümüş yıldızlardan bulutsu gökler diyarına.</h4>
-                    <p>Kalemlerin ve başlanammış hikayelerin krallığına hoşgeldiniz</p>
+                    <h4> <%= user.aboutTitle %></h4>
+                    <p><%= user.aboutText %></p>
                 </div>
                 <!--BURADA İLERDE KULLANICILAR KENDİ BAĞLANTILARINI OLUŞTURACAK -->
                 <div class="proile-sub">
@@ -61,10 +61,12 @@
         <!-- ABOUT MODAL KISMI -->
         <div id="modal" class="modal">
             <div class="modal-content">
-                <form>
-                    <input type="text" name="about-title" placeholder="Kendinizi tanıtan bir başlık girin">
+                <form id="profilModal" method="POST" action="/users/dashboard" enctype="multipart/form-data" >
+                    <input type="text" name="aboutTitle" placeholder="Kendinizi tanıtan bir başlık girin" id="aboutTitle">
 
-                    <textarea name="about-text" id="about-text" placeholder="Kendiniz hakkında bir açıklama girin"></textarea>
+                    <textarea name="aboutText" id="aboutText" placeholder="Kendiniz hakkında bir açıklama girin"></textarea>
+
+                    <input type="file" name="photo" id="photo">
                     <button type="submit" id="closeModalBtn" class="close-button">Kaydet</button>
                 </form>
             </div>
@@ -87,6 +89,22 @@
                             <p>
                                 <%= blog.blogtext.substring(0,30) + "..."%>
                             </p>
+                            <div class="edits-blog">
+                                <ul>
+                        
+
+                                    <li><a href="/blogs/<%= blog._id %>/?_method=DELETE"
+                                        onclick="return confirm('Silmek İstediğinize Emin misiniz?')"
+                                        
+                                        ><i class="fa-solid fa-trash"></i></a></li>
+                                </ul>
+
+                            </div>
+
+
+
+
+
                             <!-- BURASI BLOĞUN DEVAMINI OKU MODAL KISMI -->
                             <div id="modal-blog" class="blog-text modal3" style="display: none;">
                                 <div class="modal-content3">
@@ -107,7 +125,7 @@
                         </div>
                         <% } %>
                     </div>
-              
+ 
                 </div>
               
             </div>
@@ -115,200 +133,47 @@
         </div>
         <!-- TAKİPÇİLER ALANI -->
         <div class="container followers">
-            <h4>Takipçilerin <span>Hepsini Gör</span></h4>
+            <h4>Takipçilerin</h4>
             <div class="users">
+                <% for(follower of user.followers) { %>
                 <div class="user">
 
                     <div class="pp">
-                        <div class="pp-image">
-                            <img src="https://images.pexels.com/photos/6996168/pexels-photo-6996168.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="profile">
-                            <h3>Samanta Doranes</h3>
+                        <div class="pp-image" style="display: flex!important;flex-direction: row!important; gap:5px;">
+                            <img style="width: 60px!important; height: 60px!important;" src="<%= follower.photo %>" alt="profile">
+                            <a href="<%= follower._id %>" style="font-size: 12px; color:beige;"><%= follower.username %></a>
                         </div>
 
                     </div>
                 </div>
-                <div class="user">
-
-                    <div class="pp">
-                        <div class="pp-image">
-                            <img src="https://images.pexels.com/photos/4974360/pexels-photo-4974360.jpeg?auto=compress&cs=tinysrgb&w=1600">
-                            <h3>Kyle Wind</h3>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="user">
-
-                    <div class="pp">
-                        <div class="pp-image">
-                            <img src="https://images.pexels.com/photos/7745573/pexels-photo-7745573.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="profile">
-                            <h3>Marcos Clever</h3>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="user">
-
-                    <div class="pp">
-                        <div class="pp-image">
-                            <img src="https://images.pexels.com/photos/3586091/pexels-photo-3586091.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="profile">
-                            <h3>Helena Gunses</h3>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="user">
-
-                    <div class="pp">
-                        <div class="pp-image">
-                            <img src="https://images.pexels.com/photos/3444087/pexels-photo-3444087.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="profile">
-                            <h3>Azara Ahmedow</h3>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="user">
-
-                    <div class="pp">
-                        <div class="pp-image">
-                            <img src="https://images.pexels.com/photos/5792641/pexels-photo-5792641.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="profile">
-                            <h3>Paul Sanches</h3>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="user">
-
-                    <div class="pp">
-                        <div class="pp-image">
-                            <img src="https://images.pexels.com/photos/8993561/pexels-photo-8993561.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="profile">
-                            <h3>Alkerime Ashaben</h3>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="user">
-
-                    <div class="pp">
-                        <div class="pp-image">
-                            <img src="https://images.pexels.com/photos/8129903/pexels-photo-8129903.jpeg?auto=compress&cs=tinysrgb&w=16001" alt="profile">
-                            <h3>Halmony Grenger</h3>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="user">
-
-                    <div class="pp">
-                        <div class="pp-image">
-                            <img src="https://images.pexels.com/photos/8090137/pexels-photo-8090137.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="profile">
-                            <h3>Martin Owner</h3>
-                        </div>
-
-                    </div>
-                </div>
+                <%   } %>
             </div>
         </div>
 
         <div class="container followers">
-            <h4>Takip Ettiklerin <span>Hepsini Gör</span></h4>
+            <h4>Takip Ettiklerin</h4>
             <div class="users">
+                <% for(following of user.followings) { %>
                 <div class="user">
 
                     <div class="pp">
-                        <div class="pp-image">
-                            <img src="https://images.pexels.com/photos/6996168/pexels-photo-6996168.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="profile">
-                            <h3>Samanta Doranes</h3>
+                        <div class="pp-image" style="display: flex!important;flex-direction: row!important; gap:5px;">
+                            <img style="width: 60px!important; height: 60px!important;" src="<%= following.photo %>" alt="profile">
+                            <a href="<%= following._id %>" style=" color:beige;"><%=following.username %></a>
                         </div>
 
                     </div>
                 </div>
-                <div class="user">
-
-                    <div class="pp">
-                        <div class="pp-image">
-                            <img src="https://images.pexels.com/photos/4974360/pexels-photo-4974360.jpeg?auto=compress&cs=tinysrgb&w=1600">
-                            <h3>Kyle Wind</h3>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="user">
-
-                    <div class="pp">
-                        <div class="pp-image">
-                            <img src="https://images.pexels.com/photos/7745573/pexels-photo-7745573.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="profile">
-                            <h3>Marcos Clever</h3>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="user">
-
-                    <div class="pp">
-                        <div class="pp-image">
-                            <img src="https://images.pexels.com/photos/3586091/pexels-photo-3586091.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="profile">
-                            <h3>Helena Gunses</h3>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="user">
-
-                    <div class="pp">
-                        <div class="pp-image">
-                            <img src="https://images.pexels.com/photos/3444087/pexels-photo-3444087.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="profile">
-                            <h3>Azara Ahmedow</h3>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="user">
-
-                    <div class="pp">
-                        <div class="pp-image">
-                            <img src="https://images.pexels.com/photos/5792641/pexels-photo-5792641.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="profile">
-                            <h3>Paul Sanches</h3>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="user">
-
-                    <div class="pp">
-                        <div class="pp-image">
-                            <img src="https://images.pexels.com/photos/8993561/pexels-photo-8993561.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="profile">
-                            <h3>Alkerime Ashaben</h3>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="user">
-
-                    <div class="pp">
-                        <div class="pp-image">
-                            <img src="https://images.pexels.com/photos/8129903/pexels-photo-8129903.jpeg?auto=compress&cs=tinysrgb&w=16001" alt="profile">
-                            <h3>Halmony Grenger</h3>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="user">
-
-                    <div class="pp">
-                        <div class="pp-image">
-                            <img src="https://images.pexels.com/photos/8090137/pexels-photo-8090137.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="profile">
-                            <h3>Martin Owner</h3>
-                        </div>
-
-                    </div>
-                </div>
+                <%   } %>
             </div>
         </div>
 
         <span id="myButton"><i class="fa-regular fa-circle-up"></i></span>
 
         <script>
+
+
+
 
 
 
@@ -323,6 +188,7 @@
 
 
 
+
             //todo BURASI ABOUT MODAL KISMI
             const lastEditBtn = document.getElementById("last-edit");
             const modal = document.getElementById("modal");
@@ -332,9 +198,19 @@
                 modal.style.display = "flex";
             });
 
+
             closeModalBtn.addEventListener("click", () => {
                 modal.style.display = "none";
             });
+
+
+            const profilmodal = document.getElementById('profilModal');
+           
+
+           profilmodal.addEventListener('submit', () => {
+               profilmodal.submit();
+           })
+
 
             const modalBtn = document.getElementById("create-blog");
             const modal2 = document.getElementById("modal2");
@@ -348,6 +224,8 @@
                 modal2.style.display = "none";
 
             });
+
+    
 
 
 

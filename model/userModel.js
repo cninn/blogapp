@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";//parola hasleme için gerekli paket
-import validator  from "validator";// register giriş ekranı hata yakalama
+import validator  from "validator";// register giriş ekranı hata 
+
+
 
 const { Schema } = mongoose;
 
@@ -34,11 +36,37 @@ const userSchema = new Schema(
     },
     photo:{
       type:String,
-      default:"https://www.vippng.com/png/full/355-3554387_create-digital-profile-icon-blue-profile-icon-png.png"
-    }
+ /*      default:"https://www.vippng.com/png/full/355-3554387_create-digital-profile-icon-blue-profile-icon-png.png" */
+    },
+    aboutTitle:{
+      type:String,
+      default:"Kendimi nasıl tanıtsam"
+    },
+    aboutText:{
+      type:String,
+      default:"Hakkımda neler yazsam"
+    },
+    followers:[
+      {
+        type:Schema.Types.ObjectId,
+        ref:"User"
+      }
+    ],
+    followings:[
+      {
+        type:Schema.Types.ObjectId,
+        ref:"User"
+      }
+    ],
+    createdAt: {
+      type: Date,
+      default: Date.now // Yaratıldığında otomatik olarak güncellenir.
+    },
+
 
     
   },
+  
   {
     timestamps: true,
   }
@@ -55,8 +83,14 @@ userSchema.pre("save", function (next) {
     user.password = hash;
     
     // Profil resmi yoksa veya boşsa, varsayılan resmi ata
-    if (!user.photo) {
+/*     if (!user.photo) {
       user.photo = 'https://www.vippng.com/png/full/355-3554387_create-digital-profile-icon-blue-profile-icon-png.png';
+    } */
+    if (!user.aboutTitle) {
+      user.aboutTitle = "Kendimi nasıl tanıtsam";
+    }
+    if (!user.aboutText) {
+      user.aboutText= "Hakkımda neler yazsam";
     }
 
     next();

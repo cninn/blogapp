@@ -1,10 +1,13 @@
 import Blog from "../model/BlogModel.js";
 import User from "../model/userModel.js";
 const getIndexPage = async (req, res) => {
-  const users = await User.find({})
+  const users = await User.find({}).sort({createdAt:-1});
+  
+  const blogs = await Blog.find({ user: { $not: { $eq: res.locals.user._id } } }).sort({createdAt:-1});
   res.render("index", {
     link: "index",
-    users
+    users,
+    blogs
   });
 };
 const getDiscoverPage = (req, res) => {

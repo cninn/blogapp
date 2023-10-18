@@ -12,6 +12,7 @@ const createAuser = async (req, res, next) => {
   } catch (error) {
     let errors2 = {};
 
+   
     if (error.code === 11000) {
       errors2.email = "Farkı bir email ya da kullanıcı adı girmelisiniz";
     }
@@ -26,6 +27,7 @@ const createAuser = async (req, res, next) => {
     next();
   }
 };
+
 
 const loginUser = async (req, res) => {
   try {
@@ -74,24 +76,77 @@ const createToken = (userId) => {
 };
 
 const getDashboardPage = async (req, res) => {
+  const user = await User.findById({ _id: res.locals.user._id }).populate([
+    "followings",
+    "followers",
+  ]);
   const blogs = await Blog.find({ user: res.locals.user._id });
   res.render("dashboard", {
     link: "dashboard",
     blogs,
+    user
   });
 };
 
+
+
 const getBlogUser = async (req, res) => {
-  
   const user = await User.findById({ _id: req.params.id });
+
+  const infollowers = user.followers.some((follower) => {
+    return follower.equals(res.locals.user._id);
+  });
+
   const blogs = await Blog.find({ user: req.params.id });
   res.render("user", {
     user,
     blogs,
     link: "user",
+    infollowers
   });
 };
 
+const follow = async (req, res) => {
+  try {
+    let user = await User.findByIdAndUpdate(
+      { _id: req.params.id },
+      { $push: { followers: res.locals.user._id } },
+      { new: true }
+    );
+    user = await User.findByIdAndUpdate(
+      { _id: res.locals.user._id },
+      { $push: { followings: req.params.id } },
+      { new: true }
+    );
+    res.status(200).redirect(`back`);
+  } catch (error) {
+    console.log("follow işlemi hatalı", error);
+  }
+};
+const unfollow = async (req, res) => {
+  try {
+    let user = await User.findByIdAndUpdate(
+      { _id: req.params.id },
+      { $pull: { followers: res.locals.user._id } },
+      { new: true }
+    );
+    user = await User.findByIdAndUpdate(
+      { _id: res.locals.user._id },
+      { $pull: { followings: req.params.id } },
+      { new: true }
+    );
+    res.status(200).redirect(`back`);
+  } catch (error) {
+    console.log("unfollow işlemi hatalı", error);
+  }
+};
 
-
-export { createAuser, loginUser, createToken, getDashboardPage, getBlogUser};
+export {
+  createAuser,
+  loginUser,
+  createToken,
+  getDashboardPage,
+  getBlogUser,
+  follow,
+  unfollow,
+};

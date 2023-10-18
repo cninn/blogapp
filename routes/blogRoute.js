@@ -10,6 +10,9 @@ router
   .post(blogController.createBlog)
   .get(blogController.getAllBlogs);
 
+  router.route('/:id').delete(blogController.deleteBlog);
+ 
+
 
 
   

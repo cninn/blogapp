@@ -13,20 +13,25 @@ const blogSchema = new Schema({
     required: true,
     trim: true,
   },
-  uploadedAt: {
+  createdAt: {
     type: Date,
-    default: Date.now,
+    default: Date.now // Yaratıldığında otomatik olarak güncellenir.
   },
   user:{
     type:Schema.Types.ObjectId,
     ref:"User"
   },
+
   url:{
     type:String,
     required:true,
+  },
+  image_id:{
+    type:String
   }
 });
 
 const Blog = mongoose.model("Blog", blogSchema);
 
 export default Blog;
+

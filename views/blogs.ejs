@@ -1,13 +1,15 @@
 <%- include('parts/_header') %>
     <%- include('parts/_menu') %>
     <h3 style="margin: 2rem; font-size: 1.5em;">Herkes Burada</h3>
+    
         <% for(blog of blogs) { %>
+         
             <div class="container">
               
                 <div class="discovers">
 
 
-
+             
 
 
                     <div class="discovers-item">
@@ -15,7 +17,7 @@
                         <div class="pp">
                             <div class="pp-image">
 
-                                <img src="<%= blog.user && blog.url %>">
+                                <img src=" <%= blog.user && blog.user.photo %>">
 
                                 <h3>
                                     <%= blog.user && blog.user.username %>
@@ -60,7 +62,7 @@
                 </div>
             </div>
             <% } %>
-
+         
                 <span id="myButton"><i class="fa-regular fa-circle-up"></i></span>
 
                 <%- include('parts/_footer') %>

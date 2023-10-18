@@ -5,22 +5,21 @@
 
         <div class="slide-container">
             <div class="slides">
-                <img class="sld" src="https://images.unsplash.com/photo-1664575196644-808978af9b1f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" class="actv" alt="slide1">
+                <% for(let i = 0; i < blogs.length && i < blogs.length; i++) { %>
+               
+                    <div class="sld">
+                        <img  actv src="<%= blogs[i].url %>" alt="slide1">
+                        <div class="slide-user">
+                      
+                            <h3><%= blogs[i].blogtitle %></h3>
+                            <a href="/users/<%= blogs[i].user._id %>">Bloğa git</a>
+                        </div>
+                       
+                    </div>
+                  
+                <% } %>
+         
 
-
-                <img class="sld" src="https://images.unsplash.com/photo-1661956600684-97d3a4320e45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="slide1">
-
-
-                <img class="sld" src="https://images.unsplash.com/photo-1522204538344-922f76ecc041?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="slide1">
-
-
-                <img class="sld" src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="slide1">
-
-
-                <img class="sld" src="https://images.unsplash.com/19/desktop.JPG?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="slide1">
-
-                
-                <img class="sld" src="https://images.unsplash.com/photo-1522204553393-1f71c9d4296d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2026&q=80" alt="slide1">
 
             </div>
             <div class="btns">
@@ -124,7 +123,8 @@
 
             //auto play
             function autoSliding() {
-                deleteInterval = setInterval(timer, 5000);
+                slideNext();
+                deleteInterval = setInterval(timer, 10000);
                 function timer() {
                     slideNext();
                     indicators();

@@ -782,7 +782,7 @@ width: 100%;
     width: 100%;
     height: 300px;
     object-fit: cover;
-    border-radius: 20px;
+    border-radius: 50%;
 }
 .blogs img:hover{
     opacity: 0.6;
@@ -1428,17 +1428,18 @@ width: 100%;
 
 .modal-content3 {
    position: absolute;
-   top: 50%;
-   left: 50%;
-   transform: translate(-50% ,-50%);
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.0,1);
+   top: 0;
+   left: 0;
+
+    width: 50%;
+    background-color: rgba(0, 0, 0, 0.7);
     color:var(--dark-white)!important;
     padding:1rem;
     border-radius: 20px;
     display: flex;
     flex-direction: column;  
-    align-items: center;
+    gap: 2rem;
+  padding: 2rem;
     position: relative;
     height: 100vh;
     overflow-y: scroll!important;
@@ -1523,14 +1524,35 @@ width: 100%;
     height: calc(100% - 40px);
     position: relative;
     overflow: hidden;
+    position: relative;
     
 }
-.slide-container .slides img{
+.slide-container .slides .sld{
     width: 100%;
     height: 100%;
     position: absolute;
     object-fit: cover;
     border-radius: 15px;
+    
+
+}
+.slide-container .slides .sld .slide-user{
+    position: absolute;
+    top: 3rem;
+    left:5rem;
+    background-color: var(--dark-red);
+    padding: 1rem 3rem;
+    border-radius: 10px;
+    box-shadow: 2px 3px 8px rgba(0, 0, 0, 1);
+  
+}
+.slide-container .slides img{
+    width: 100%;
+    height: 100%;
+  
+    object-fit: cover;
+    border-radius: 15px;
+   
 
 }
 @media(max-width:600px){
@@ -1539,10 +1561,11 @@ width: 100%;
         height: 350px;
     }
 }
-.slide-container .slides img:not(.actv){
+.slide-container .slides .sld:not(.actv){
     top: 0;
     left: -100%;
 }
+
 
 span.nexta, span.preva{
     position: absolute;
@@ -1641,3 +1664,37 @@ span.nexta:hover, span.preva:hover{
 .nav-links ul li a {
     width: 6rem;
 }
+.d-block{
+    position: relative;
+}
+.d-block .edits-blog{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    
+}
+.d-block .edits-blog ul{
+    display: flex;
+    gap: 5px;
+}
+.d-block .edits-blog ul li a{
+    background-color: var(--dark-red);
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4em;
+    transition: all 0.5s;
+}
+.d-block .edits-blog ul li a:hover{
+    background-color: #0B090A;
+    
+}
+.editBlog{
+    display: none;
+}
+
+
