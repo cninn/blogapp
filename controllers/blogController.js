@@ -67,7 +67,7 @@ const createAbout = async (req,res)=>{
 
 const getAllBlogs = async (req, res) => {
   try {
-    const blogs = await Blog.find({ user: { $not: { $eq: res.locals.user._id } } }).sort({createdAt:-1}).populate("user");
+    const blogs = await Blog.find({}).sort({createdAt:-1}).populate("user");
     const users = await User.find({})
     res.status(200).render("blogs", {
       blogs,

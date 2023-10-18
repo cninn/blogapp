@@ -62,4 +62,10 @@ for (let i = 0; i < openBlogBtn.length; i++) {
     modal3[i].style.display = "none";
   });
 }
+//contacct form visible
+const openMailbtn = document.getElementById('openMailUI');
+const mailUI = document.querySelector('.card');
 
+openMailbtn.addEventListener('click',()=>{
+  mailUI.classList.toggle('toggle-mail');
+})
