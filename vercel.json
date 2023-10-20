@@ -1,13 +1,5 @@
 {
-  "version": 2,
-  "routes": [
-    {
-      "src": "/",
-      "dest": "/"
-    },
-    {
-      "src": "/",
-      "dest": "/"
-    }
-  ]
+  "scripts": {
+    "start": "node app.js"
+  }
 }
