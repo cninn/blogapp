@@ -17,22 +17,7 @@
                     <span id="create-blog"><i id="modalBlogBtn" class="fa-solid fa-circle-plus"></i> Blogla</span>
                 </div>
             </div>
-            <div id="about" class="profile-about">
-                <div class="about-desc">
-                    <!-- BURAYA KULLANICI ABOUT MODALDAN GELEN BİLGİLER GELECEK -->
-                    <h4> <%= user.aboutTitle %></h4>
-                    <p><%= user.aboutText %></p>
-                </div>
-                <!--BURADA İLERDE KULLANICILAR KENDİ BAĞLANTILARINI OLUŞTURACAK -->
-                <div class="proile-sub">
-                    <div class="profile-icons">
-                        <a href=""><i class="fa-brands fa-facebook"></i></a>
-                        <a href=""><i class="fa-brands fa-instagram"></i></a>
-                        <a href=""><i class="fa-brands fa-twitter"></i></a>
-                        <i id="last-edit" class="fa-regular fa-pen-to-square"></i>
-                    </div>
-                </div>
-            </div>
+
             <!-- BLOG MODAL KISMI -->
             <div id="modal2" class="modal2">
                 <div class="modal-content2">
@@ -53,9 +38,26 @@
                     </form>
                 </div>
             </div>
+            
+        </div>
+        <div id="about" class="profile-about">
+            <div class="about-desc">
+                <!-- BURAYA KULLANICI ABOUT MODALDAN GELEN BİLGİLER GELECEK -->
+                <h4> <%= user.aboutTitle %></h4>
+                <p><%= user.aboutText %></p>
+            </div>
+            <!--BURADA İLERDE KULLANICILAR KENDİ BAĞLANTILARINI OLUŞTURACAK -->
+            <div class="proile-sub">
+                <div class="profile-icons">
+                    <a href=""><i class="fa-brands fa-facebook"></i></a>
+                    <a href=""><i class="fa-brands fa-instagram"></i></a>
+                    <a href=""><i class="fa-brands fa-twitter"></i></a>
+                    <i id="last-edit" class="fa-regular fa-pen-to-square"></i>
+                </div>
+            </div>
         </div>
         <!-- PROİLE SECTİON END -->
-
+   
 
 
         <!-- ABOUT MODAL KISMI -->
@@ -74,11 +76,11 @@
       
         <div class="container blog-section">
             <h2>Blogladıklarım</h2>
-            <% for(blog of blogs) { %>
+         
             <div class="blogs">
               
-                <div class="discovers-item">
-                   
+                <div style="display: flex; flex-wrap: wrap;" class="discovers-item">
+                    <% for(blog of blogs) { %>
                     <div class="blog">
                      
                         <div class="d-block"  style="width: 400px; height: 500px;">
@@ -123,9 +125,9 @@
                             </div>
                             <button id="openBlogBtn">Devamını Oku</button>
                         </div>
-                        <% } %>
+                       
                     </div>
- 
+                    <% } %>
                 </div>
               
             </div>

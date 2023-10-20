@@ -2,18 +2,18 @@
     <%- include('parts/_menu') %>
     <h3 style="margin: 2rem; font-size: 1.5em;">Herkes Burada</h3>
     
-        <% for(blog of blogs) { %>
+       
          
             <div class="container">
               
-                <div class="discovers">
+                <div style="display: flex; flex-wrap: wrap;" class="discovers">
 
 
              
 
-
-                    <div class="discovers-item">
-
+                    <% for(blog of blogs) { %>
+                    <div  class="discovers-item">
+                      
                         <div class="pp">
                             <div class="pp-image">
 
@@ -29,7 +29,7 @@
                         <div class="blog">
 
                             <div class="d-block">
-                                <img src="<%= blog.url %>" alt="">
+                                <img style="width:600px; max-height:350px; object-fit: cover;" src="<%= blog.url %>" alt="">
                                 <h4>
                                     <%= blog.blogtitle %>
                                 </h4>
@@ -57,11 +57,11 @@
 
                         </div>
                     </div>
-
+                    <% } %>
 
                 </div>
             </div>
-            <% } %>
+           
          
                 <span id="myButton"><i class="fa-regular fa-circle-up"></i></span>
 

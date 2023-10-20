@@ -1683,5 +1683,8 @@ span.preva:hover {
         animation: none;
        
     }
+    .modal-content3{
+      width: 100%;
+    }
     
 }

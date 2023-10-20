@@ -36,18 +36,19 @@
                     </div>
                 </div>
                 <!-- KULLANICI HAKKINDA -->
-                <div id="about" class="profile-about">
-                    <div class="about-desc">
-                        <h4><%= user.aboutTitle %></h4>
-                        <p><%= user.aboutText %></p>
-                    </div>
+   
+            </div>
+            <div id="about" class="profile-about">
+                <div class="about-desc">
+                    <h4><%= user.aboutTitle %></h4>
+                    <p><%= user.aboutText %></p>
+                </div>
 
-                    <div class="proile-sub">
-                        <div class="profile-icons">
-                            <a href=""><i class="fa-brands fa-facebook"></i></a>
-                            <a href=""><i class="fa-brands fa-instagram"></i></a>
-                            <a href=""><i class="fa-brands fa-twitter"></i></a>
-                        </div>
+                <div class="proile-sub">
+                    <div class="profile-icons">
+                        <a href=""><i class="fa-brands fa-facebook"></i></a>
+                        <a href=""><i class="fa-brands fa-instagram"></i></a>
+                        <a href=""><i class="fa-brands fa-twitter"></i></a>
                     </div>
                 </div>
             </div>
@@ -60,22 +61,22 @@
 
             <div class="container blog-section">
                 <h2>Blogladıklarım</h2>
-                <div class="blogs">
+                <div  class="blogs">
 
 
-                    <div class="discovers-item">
+                    <div  class="discovers-item">
 
              
-
-                        <div class="blog">
+                        
+                        <div  style="display: flex; flex-wrap: wrap;" class="blog">
                             <% for(blog of blogs) { %>
-                            <div class="d-block">
-                                <img src="<%= blog.url %>" alt="">
+                            <div style="width: 350px; " class="d-block">
+                                <img style="width: 350px; max-height: 350px;" src="<%= blog.url %>" alt="">
                                 <h4>
                                     <%= blog.blogtitle %>
                                 </h4>
                                 <p>
-                                    <%= blog.blogtext.substring(0,80) + "..." %>
+                                    <%= blog.blogtext.substring(0,30) + "..." %>
                                 </p>
 
                                 <div id="modal-blog" class="blog-text modal3" style="display: none;">
@@ -97,7 +98,7 @@
                             </div>
                             <% } %>
                         </div>
-                     
+                      
                     </div>
 
 

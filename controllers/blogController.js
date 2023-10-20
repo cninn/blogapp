@@ -4,6 +4,9 @@ import { v2 as cloudinary } from "cloudinary"; //online tabanlı upload arşivi
 import fs from "fs";
 
 const createBlog = async (req, res, next) => {
+
+
+
   const result = await cloudinary.uploader.upload(
     req.files.image.tempFilePath,
     {
@@ -27,13 +30,27 @@ const createBlog = async (req, res, next) => {
 
     res.status(201).redirect("/users/dashboard");
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      error,
-    });
+
+      if (!req.body.blogtitle && !req.body.blogtext){
+     res.status(500).send(`<body style="width: 100%;
+    height: 100vh;
+    z-index: 999;
+    margin:0;
+    background-color:black;
+    color:darkred;
+    display: flex;
+    text-align:center;
+    justify-content: center;
+    flex-direction:column;
+    align-items: center;">
+    <h1>Tüm Alanları Doldurmalısınız</h1>
+    <h2>Örn:(Blog başlık,blog içeriği ve resim)</h2>
+    <a style="font-size:30px; color:white; font-weight:bold;" href="/users/dashboard">Geri Dön</a>
+</body>`);
+  }
   }
 };
-const createAbout = async (req,res)=>{
+const createAbout = async (req, res) => {
   const result = await cloudinary.uploader.upload(
     req.files.photo.tempFilePath,
     {
@@ -43,15 +60,16 @@ const createAbout = async (req,res)=>{
   );
 
   // console.log("result : ",result);
-    const UserId = res.locals.user._id
+  const UserId = res.locals.user._id;
   try {
-    await User.findByIdAndUpdate(UserId,{
-      aboutTitle: req.body.aboutTitle,
-      aboutText: req.body.aboutText,
-      photo: result.secure_url,
-     
-    },
-    { new: true }
+    await User.findByIdAndUpdate(
+      UserId,
+      {
+        aboutTitle: req.body.aboutTitle,
+        aboutText: req.body.aboutText,
+        photo: result.secure_url,
+      },
+      { new: true }
     );
 
     fs.unlinkSync(req.files.photo.tempFilePath);
@@ -63,16 +81,16 @@ const createAbout = async (req,res)=>{
       error,
     });
   }
-}
+};
 
 const getAllBlogs = async (req, res) => {
   try {
-    const blogs = await Blog.find({}).sort({createdAt:-1}).populate("user");
-    const users = await User.find({})
+    const blogs = await Blog.find({}).sort({ createdAt: -1 }).populate("user");
+    const users = await User.find({});
     res.status(200).render("blogs", {
       blogs,
       link: "blogs",
-      users
+      users,
     });
   } catch (error) {
     res.status(500).json({
@@ -91,10 +109,10 @@ const deleteBlog = async (req, res) => {
 
     await Blog.findOneAndRemove({ _id: req.params.id });
 
-    res.status(200).redirect('/users/dashboard');
+    res.status(200).redirect("/users/dashboard");
   } catch (error) {
-      console.log(error,"silme işlemi başarısız")
+    console.log(error, "silme işlemi başarısız");
   }
 };
 
-export { createBlog, getAllBlogs, deleteBlog,createAbout };
+export { createBlog, getAllBlogs, deleteBlog, createAbout };

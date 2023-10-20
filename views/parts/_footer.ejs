@@ -24,7 +24,7 @@
                 </div>
                 <div  margin-right: 3rem;"  class="card">
                     <span class="title">İletişim</span>
-                    <form class="form">
+                    <form id="mailform" class="form">
                       <div class="group">
                       <input placeholder="‎" type="text" required="">
                       <label for="name">Ad</label>
@@ -50,7 +50,12 @@
 
 
 
-
+<script>
+    const mailform = document.getElementById('mailform');
+    mailform.addEventListener('submit',()=>{
+        mailform.submit();
+    })
+</script>
     <script src="/app.js"></script>
 </body>
 
