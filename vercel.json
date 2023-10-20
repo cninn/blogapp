@@ -1,9 +1,17 @@
 {
-    "version": 2,
-    "routes": [
-      {
-        "src": "/(.*)", 
-        "dest": "/app.js" 
-      }
-    ]
-  }
+  "version": 2,
+  "routes": [
+    {
+      "src": "/app.js", 
+      "dest": "/app.js"
+    },
+    {
+      "src": "/(.*)", 
+      "dest": "/index.js" 
+    },
+    {
+      "src": "/(.*)", 
+      "dest": "/db.js" 
+    }
+  ]
+}
