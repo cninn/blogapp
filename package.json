@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "go": "node-dev app.js"
+    "go": "node app.js"
   },
   "author": "CninnMakes",
   "license": "ISC",

@@ -21,7 +21,7 @@ cloudinary.config({
 conn();
 
 const app = express();
-const PORT = 4100;
+const PORT = process.env.PORT
 
 //ejs npm template engine kullanımı bu modul html sayfalarını sunucumuzda göstermemizi sağlar
 app.set("view engine", "ejs");
