@@ -9,7 +9,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "node app.js --openssl-legacy-provider build",
+    "build":"node app.js --openssl-legacy-provider build"
   },
   "author": "CninnMakes",
   "license": "ISC",
