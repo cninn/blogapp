@@ -2,13 +2,8 @@
   "version": 2,
   "routes": [
     {
-      "src": "/app.js", 
-      "dest": "/app.js"
-    },
-    {
-      "src": "/(.*)", 
+      "src": "/(.*)",
       "dest": "/app.js" 
     }
-
   ]
 }
