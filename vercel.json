@@ -7,11 +7,8 @@
     },
     {
       "src": "/(.*)", 
-      "dest": "/index.js" 
-    },
-    {
-      "src": "/(.*)", 
-      "dest": "/db.js" 
+      "dest": "/app.js" 
     }
+
   ]
 }
