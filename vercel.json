@@ -1,4 +1,4 @@
 {
   "version": 2,
-  "functions": { "app.js": { "runtime": "now-node@18" } }
+  "functions": { "app.js": { "runtime": "now-node@16" } }
 }
